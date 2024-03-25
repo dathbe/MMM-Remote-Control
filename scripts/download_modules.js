@@ -20,7 +20,7 @@ const util = require("util");
 var downloadModules = {
     defaults: {
         modulesFile: path.resolve(__dirname, "../modules.json"),    // Path to modules file
-        sourceUrl: 'https://raw.githubusercontent.com/wiki/MichMich/MagicMirror/3rd-Party-Modules.md', // Source url
+        sourceUrl: 'https://raw.githubusercontent.com/wiki/MagicMirrorOrg/MagicMirror/3rd-Party-Modules.md', // Source url
         refreshRate: 24 * 3600,                                     // Max Refresh of One Day
         force: false,                                               // Force the update
         callback: function(result) { console.log(result); }         // Callback to run on success or failure
@@ -93,7 +93,7 @@ var downloadModules = {
     checkLastModified() {
         fs.stat(this.config.modulesFile, (err, stats) => {
             let mtime = Math.round(new Date(util.inspect(stats.mtime)).getTime() / 1000);
-            let updatedAfter = new Date(Math.round(new Date().getTime() / 1000) - this.config.refreshRate).getTime();
+            let updatedAfter = new Date(Math.round(new Date(Date.now()).getTime() / 1000) - this.config.refreshRate).getTime();
             let needsUpdate = mtime <= updatedAfter;
             if (needsUpdate || this.config.force) { 
                 this.getPackages(); 
