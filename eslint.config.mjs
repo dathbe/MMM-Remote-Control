@@ -1,12 +1,12 @@
-import eslintPluginImport from "eslint-plugin-import-x";
 import eslintPluginJs from "@eslint/js";
 import eslintPluginStylistic from "@stylistic/eslint-plugin";
 import globals from "globals";
+import {flatConfigs as importConfigs} from "eslint-plugin-import-x";
 
 const config = [
-  eslintPluginImport.flatConfigs.recommended,
   eslintPluginJs.configs.recommended,
   eslintPluginStylistic.configs.all,
+  importConfigs.recommended,
   {
     "ignores": ["**/*.min.js"]
   },
@@ -40,7 +40,6 @@ const config = [
       "no-await-in-loop": "off",
       "no-inline-comments": "off",
       "no-magic-numbers": "off",
-      "no-plusplus": "off",
       "no-var": "error",
       "one-var": "off",
       "prefer-const": "error",
@@ -59,11 +58,9 @@ const config = [
       "sourceType": "module"
     },
     "rules": {
-      "@stylistic/array-element-newline": "off",
+      "@stylistic/array-element-newline": ["error", "consistent"],
       "@stylistic/indent": ["error", 2],
-      "max-lines-per-function": ["error", 100],
-      "no-magic-numbers": "off",
-      "one-var": "off"
+      "no-magic-numbers": "off"
     }
   }
 ];
